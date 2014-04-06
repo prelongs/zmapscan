@@ -88,10 +88,6 @@ void routerscan_print_packet(FILE *fp, void* packet)
 int routerscan_validate_packet(const struct ip *ip_hdr, 
 		uint32_t len, uint32_t *src_ip, uint32_t *validation)
 {
-	if (icmp_h->icmp_type == ICMP_ECHOREPLY){
-		// ignore icmp echoreply message
-		return 0;
-	}
 	return 1;
 	if (ip_hdr->ip_p != IPPROTO_ICMP) {
 		return 0;
@@ -188,7 +184,7 @@ fielddef_t routerscan_fields[] = {
 probe_module_t module_routerscan = {
 	.name = "routerscan",
 	.packet_length = 62,
-	.pcap_filter = "icmp and icmp[0] != 8",
+	.pcap_filter = "icmp && icmp[0] != 8 && icmp[0] != 0",
 	.pcap_snaplen = 96,
 	.port_args = 0,
 	.thread_initialize = &routerscan_init_perthread,
