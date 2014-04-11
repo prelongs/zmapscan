@@ -20,7 +20,6 @@
 #include "../fieldset.h"
 #include "packet.h"
 #include "validate.h"
-#include "routermessage.h"
 
 #define ICMP_SMALLEST_SIZE 5
 #define ICMP_TIMXCEED_UNREACH_HEADER_SIZE 8
@@ -59,6 +58,11 @@ int routerscan_make_packet(void *buf, ipaddr_n_t src_ip, ipaddr_n_t dst_ip,
 	icmp_header->icmp_id = icmp_idnum;
 	icmp_header->icmp_cksum = 0;
 	icmp_header->icmp_cksum = icmp_checksum((unsigned short *) icmp_header);
+	log_debug("!!!", "dst ip is %u", dst_ip);
+	char dst[10];
+	//char sign[1] = 'x';
+	sprintf(dst , "%u", dst_ip);
+	memcpy(icmp_header->icmp_data, dst, sizeof(dst));
 	ip_header->ip_sum = 0;
 	ip_header->ip_sum = zmap_ip_checksum((unsigned short *) ip_header);
 
@@ -138,16 +142,9 @@ void routerscan_process_packet(const u_char *packet,
 		__attribute__((unused)) uint32_t len, fieldset_t *fs)
 {
 	struct ip *ip_hdr = (struct ip *) &packet[sizeof(struct ether_header)];
-
-	//use the new struct icmp_hdr defined in ./routermessage.h 
-	//which define the time-exceed message IP-ICMP-(IP-ICMP)
-	struct icmphdr_ip *icmp_hdr = (struct icmphdr_ip *) ((char *) ip_hdr + 4 * ip_hdr-> ip_hl);
-	//struct icmphdr_ip *icmp_hdr = (struct icmphdr_ip *) ((char *) ip_hdr + 1);
-
-	fs_add_uint64(fs, "icmptype", icmp_hdr->icmp_type);
-	fs_add_uint64(fs, "icmpcode", icmp_hdr->icmp_code);
+	struct icmp *icmp_hdr = (struct icmp *) ((char *) ip_hdr + 4*ip_hdr->ip_hl);
+	fs_add_uint64(fs, "icmpcode", icmp_hdr->icmp_type);
 	fs_add_uint64(fs, "sendttl", zconf.max_ttl);
-	fs_add_string(fs, "orgdst", make_ip_str(icmp_hdr->ip_dst), 0);
 	switch (icmp_hdr->icmp_type) {
 		case ICMP_ECHOREPLY:
 			fs_add_string(fs, "type", (char*) "echoreply", 0); 
@@ -180,11 +177,9 @@ void routerscan_process_packet(const u_char *packet,
 }
 
 fielddef_t routerscan_fields[] = {
-	{.name="icmptype", .type="int", .desc="icmp message type"},
-	{.name="icmpcode", .type="int", .desc="icmp message code"},
+	{.name="icmpcode", .type="int", .desc="icmp message type"},
 	{.name="sendttl", .type="int", .desc="max ttl"},
-	{.name="orgdst", .type="string", .desc="orginal destination address"},
-	{.name="type", .type="string", .desc="desc of icmp type"},
+	{.name="type", .type="string", .desc="probe module type"},
 	{.name="classification", .type="string", .desc="probe module classification"},
 	{.name="success", .type="int", .desc="did probe module classify response as success"}
 };
@@ -192,8 +187,8 @@ fielddef_t routerscan_fields[] = {
 
 probe_module_t module_routerscan = {
 	.name = "routerscan",
-	.packet_length = 70,
-	.pcap_filter = "icmp && icmp[0] != 8 && icmp[0] != 0 && icmp[1] != 1",
+	.packet_length = 62,
+	.pcap_filter = "icmp && icmp[0] != 8 && icmp[0] != 0",
 	.pcap_snaplen = 96,
 	.port_args = 0,
 	.thread_initialize = &routerscan_init_perthread,
@@ -203,5 +198,5 @@ probe_module_t module_routerscan = {
 	.validate_packet = &routerscan_validate_packet,
 	.close = NULL,
 	.fields = routerscan_fields,
-	.numfields = 7};
+	.numfields = 5};
 

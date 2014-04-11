@@ -34,7 +34,7 @@ ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/etc/zmap/blacklist.conf;/etc/zmap/zmap.conf;/etc/zmap/zmap.conf~")
+   "/etc/zmap/blacklist.conf;/etc/zmap/zmap.conf")
   IF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
@@ -44,7 +44,6 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
 FILE(INSTALL DESTINATION "/etc/zmap" TYPE FILE FILES
     "/home/long/zmap/conf/blacklist.conf"
     "/home/long/zmap/conf/zmap.conf"
-    "/home/long/zmap/conf/zmap.conf~"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 

@@ -83,7 +83,7 @@ void packet_cb(u_char __attribute__((__unused__)) *user,
 
 	int is_repeat = pbm_check(seen, ntohl(src_ip));
 	if(zconf.max_ttl < MAXTTL) {
-		is_repeat = 0;
+		is_preat = 0;
 	}
 	fieldset_t *fs = fs_new_fieldset();
 	fs_add_ip_fields(fs, ip_hdr);

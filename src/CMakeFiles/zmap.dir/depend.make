@@ -133,12 +133,14 @@ src/CMakeFiles/zmap.dir/probe_modules/module_icmp_echo.c.o: src/types.h
 src/CMakeFiles/zmap.dir/probe_modules/module_icmp_echo.c.o: src/validate.h
 
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: lib/includes.h
+src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: lib/logger.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/expression.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/fieldset.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/filter.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/probe_modules/module_routerscan.c
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/probe_modules/packet.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/probe_modules/probe_modules.h
+src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/probe_modules/routermessage.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/state.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/types.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o: src/validate.h

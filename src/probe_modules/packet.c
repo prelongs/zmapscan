@@ -102,6 +102,13 @@ void make_icmp_header(struct icmp *buf)
 	buf->icmp_seq = 0;
 }
 
+void make_icmp(struct icmp *buf)
+{
+	buf->icmp_type = ICMP_ECHO;
+	buf->icmp_code = 0;
+	buf->icmp_seq = 0;
+	memset(buf->icmp_data, 0x5a, 20);
+}
 void make_tcp_header(struct tcphdr *tcp_header, port_h_t dest_port)
 {
     tcp_header->th_seq = random();

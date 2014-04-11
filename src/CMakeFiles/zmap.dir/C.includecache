@@ -32,6 +32,14 @@ ifaddrs.h
 arpa/inet.h
 -
 
+/home/long/zmap/lib/logger.h
+stdio.h
+-
+stdarg.h
+-
+syslog.h
+-
+
 /home/long/zmap/src/expression.h
 fieldset.h
 /home/long/zmap/src/fieldset.h
@@ -71,6 +79,8 @@ unistd.h
 -
 string.h
 -
+../../lib/logger.h
+/home/long/zmap/lib/logger.h
 ../../lib/includes.h
 /home/long/zmap/lib/includes.h
 probe_modules.h
@@ -81,6 +91,8 @@ packet.h
 /home/long/zmap/src/probe_modules/packet.h
 validate.h
 /home/long/zmap/src/probe_modules/validate.h
+routermessage.h
+/home/long/zmap/src/probe_modules/routermessage.h
 
 /home/long/zmap/src/probe_modules/packet.h
 ../../lib/includes.h
@@ -93,6 +105,8 @@ validate.h
 /home/long/zmap/src/state.h
 ../fieldset.h
 /home/long/zmap/src/fieldset.h
+
+/home/long/zmap/src/probe_modules/routermessage.h
 
 /home/long/zmap/src/state.h
 stdio.h

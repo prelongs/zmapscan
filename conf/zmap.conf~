@@ -21,6 +21,6 @@ blacklist-file "/etc/zmap/blacklist.conf"
 whitelist-file "/etc/zmap/whitelist.conf"
 verbosity 5
 cooldown-time 6
-output-fields "saddr, sendttl, icmptype, type, icmpcode, orgdst"
+output-fields "saddr, sendttl, icmptype, icmpcode, orgdst"
 ### Optionally print a summary at the end
 #summary

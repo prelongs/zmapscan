@@ -134,12 +134,14 @@ src/CMakeFiles/zmap.dir/probe_modules/module_icmp_echo.c.o
  src/validate.h
 src/CMakeFiles/zmap.dir/probe_modules/module_routerscan.c.o
  /home/long/zmap/lib/includes.h
+ /home/long/zmap/lib/logger.h
  /home/long/zmap/src/expression.h
  /home/long/zmap/src/fieldset.h
  /home/long/zmap/src/filter.h
  /home/long/zmap/src/probe_modules/module_routerscan.c
  /home/long/zmap/src/probe_modules/packet.h
  /home/long/zmap/src/probe_modules/probe_modules.h
+ /home/long/zmap/src/probe_modules/routermessage.h
  /home/long/zmap/src/state.h
  /home/long/zmap/src/types.h
  src/validate.h
