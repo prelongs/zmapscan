@@ -192,8 +192,8 @@ fielddef_t routerscan_fields[] = {
 
 probe_module_t module_routerscan = {
 	.name = "routerscan",
-	.packet_length = 70,
-	.pcap_filter = "icmp && icmp[0] != 8 && icmp[0] != 0 && icmp[1] != 1",
+	.packet_length = 62,
+	.pcap_filter = "icmp && icmp[0] == 11 && icmp[1] != 1",
 	.pcap_snaplen = 96,
 	.port_args = 0,
 	.thread_initialize = &routerscan_init_perthread,
